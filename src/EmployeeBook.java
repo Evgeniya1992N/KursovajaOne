@@ -12,13 +12,15 @@ public class EmployeeBook {
     public int calculateTotalSalary() {
         int sum = 0;
         for (Employee employee : employees) {
-            sum += employee.getSalary();
+            if (employee != null) {
+                sum += employee.getSalary();
+            }
         }
         return sum;
     }
 
     public int caclulateAverageSalary() {
-        return calculateTotalSalary() / Employee.getCounter();
+        return calculateTotalSalary() / employees.length;
     }
 
     public Employee findEmployeeWithMinSalary() {
@@ -54,15 +56,19 @@ public class EmployeeBook {
 
     public void printFullNames() {
         for (Employee employee : employees) {
-            System.out.println(employee.getName());
+            if (employee != null) {
+                System.out.println(employee.getName());
+            }
         }
     }
 
     public void increaseSalary(int percentOfIncrease) {
         for (Employee employee : employees) {
-            int currentSalary = employee.getSalary();
-            double increase = currentSalary * percentOfIncrease * 0.01;
-            employee.setSalary((int) (currentSalary + increase));
+            if (employee != null) {
+                int currentSalary = employee.getSalary();
+                double increase = currentSalary * percentOfIncrease * 0.01;
+                employee.setSalary((int) (currentSalary + increase));
+            }
         }
     }
 
@@ -72,30 +78,32 @@ public class EmployeeBook {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
                 employees[i] = new Employee(fullName, department, salary);
-            } else {
-                System.out.println("Database is full");
             }
+
+            return;
         }
+        System.out.println("Database is full");
     }
 
     public void removeEmployee(int id) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getId() == id) {
+            if (employees[i].getId() == id && employees != null) {
                 employees[i] = null;
-            } else {
-                System.out.println("No employee found");
             }
+            return;
+
         }
+        System.out.println("No employee found");
     }
 
     //Task 5 Change salary and department
     public void modifyEmployee(int id, int newSalary, int newDepartment, boolean salary, boolean department) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getId() == id) {
-                if (salary = true) {
+            if (employees[i].getId() == id && employees != null) {
+                if (salary) {
                     employees[i].setSalary(newSalary);
                 }
-                if (department = true) {
+                if (department) {
                     employees[i].setDepartment(newDepartment);
                 }
             }
@@ -108,20 +116,13 @@ public class EmployeeBook {
         int[] depNumber = new int[]{1, 2, 3, 4, 5};
         for (int k = 0; k < depNumber.length; k++) {
             for (int i = 0; i < employees.length; i++) {
-                if (employees[i].getDepartment() == depNumber[k]) {
+                if(depNumber[k] == employees[i].getDepartment() && employees != null) {
                     System.out.println("Employee: " + employees[i].getName() + ", Department: " + depNumber[k] + ".");
-                } else if (employees[i].getDepartment() == 2) {
-                    System.out.println("Employee: " + employees[i].getName() + ", Department: " + depNumber[k] + ".");
-                } else if (employees[i].getDepartment() == 3) {
-                    System.out.println("Employee: " + employees[i].getName() + ", Department: " + depNumber[k] + ".");
-                } else if (employees[i].getDepartment() == 4) {
-                    System.out.println("Employee: " + employees[i].getName() + ", Department: " + depNumber[k] + ".");
-                } else {
-                    System.out.println("Employee: " + employees[i].getName() + ", Department: " + depNumber[k] + ".");
+                }
+                return;
                 }
             }
         }
-    }
 }
 
 //comments

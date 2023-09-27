@@ -3,7 +3,7 @@ public class Main {
     private static final Employee[] employees = new Employee[]{
             new Employee("Ivanov Ivan Ivanovich1", 1, 1000),
             new Employee("Ivanov Ivan Ivanovich2", 1, 1001),
-            new Employee("Ivanov Ivan Ivanovich3", 2, 1002),
+            new Employee("Ivanov Ivan Ivanovich3", 1, 1001),
             new Employee("Ivanov Ivan Ivanovich4", 2, 1003),
             new Employee("Ivanov Ivan Ivanovich5", 3, 1004),
             new Employee("Ivanov Ivan Ivanovich6", 3, 2005),
@@ -35,7 +35,7 @@ public class Main {
         // }
         //  return average;
         //}
-        return calculateTotalSalary() / Employee.getCounter();
+        return calculateTotalSalary() / employees.length;
     }
 
     public static Employee findEmployeeWithMinSalary() {
@@ -172,10 +172,20 @@ public class Main {
         }
     }
 
-        public static void main (String[] args) {
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
 
-        }
-        }
+        EmployeeBook newEmployeeBook = new EmployeeBook();
+        newEmployeeBook.caclulateAverageSalary();
+        newEmployeeBook.removeEmployee(0);
+        newEmployeeBook.calculateTotalSalary();
+        newEmployeeBook.addEmployee("Petrov Petr Petrovich", 1, 3000);
+        newEmployeeBook.increaseSalary(10);
+        newEmployeeBook.findEmployeeWithMinSalary();
+        newEmployeeBook.printFullNames();
+        newEmployeeBook.printOutEmployeeWithDep();
+    }
+}
 
 
 //comments
