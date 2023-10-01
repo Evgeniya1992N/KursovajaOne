@@ -1,6 +1,5 @@
 public class Main {
-
-    private static final Employee[] employees = new Employee[]{
+/*{private static final Employee[] employees = new Employee[]{
             new Employee("Ivanov Ivan Ivanovich1", 1, 1000),
             new Employee("Ivanov Ivan Ivanovich2", 1, 1001),
             new Employee("Ivanov Ivan Ivanovich3", 1, 1001),
@@ -11,7 +10,10 @@ public class Main {
             new Employee("Ivanov Ivan Ivanovich8", 4, 2007),
             new Employee("Ivanov Ivan Ivanovich9", 5, 2008),
             new Employee("Ivanov Ivan Ivanovich10", 5, 2009)
-    };
+};*/
+
+    private static EmployeeBook newEmployeeBook = new EmployeeBook();
+    private static final Employee[] employees = newEmployeeBook.getEmployees();
 
 
     public static void printEmployees() {
@@ -19,6 +21,7 @@ public class Main {
             System.out.println(employee);
         }
     }
+
 
     public static int calculateTotalSalary() {
         int sum = 0;
@@ -35,7 +38,12 @@ public class Main {
         // }
         //  return average;
         //}
-        return calculateTotalSalary() / employees.length;
+        int counter = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+            counter++;}
+        }
+        return calculateTotalSalary() / counter;
     }
 
     public static Employee findEmployeeWithMinSalary() {
@@ -173,15 +181,29 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        System.out.println("part1");
 
-        EmployeeBook newEmployeeBook = new EmployeeBook();
-        newEmployeeBook.caclulateAverageSalary();
-        newEmployeeBook.removeEmployee(0);
-        newEmployeeBook.calculateTotalSalary();
-        newEmployeeBook.addEmployee("Petrov Petr Petrovich", 1, 3000);
+        System.out.println(calculateTotalSalary());
+        System.out.println(newEmployeeBook.caclulateAverageSalary());
+        System.out.println(newEmployeeBook.findEmployeeWithMinSalary());
+        System.out.println("before increase");
+        System.out.println(employees[0]);
+        System.out.println(employees[1]);
         newEmployeeBook.increaseSalary(10);
-        newEmployeeBook.findEmployeeWithMinSalary();
+        System.out.println("after increase");
+        System.out.println(employees[0]);
+        System.out.println(employees[1]);
+
+        System.out.println("part2");
+
+        System.out.println(employees[3]);
+        newEmployeeBook.removeEmployee(3);
+        System.out.println(employees[3]);
+        newEmployeeBook.addEmployee("Petrov Petr Petrovich", 1, 3000); //добавление сотрудника не работает
+        System.out.println(employees[3]);
+
+        System.out.println("part3");
+
         newEmployeeBook.printFullNames();
         newEmployeeBook.printOutEmployeeWithDep();
     }
